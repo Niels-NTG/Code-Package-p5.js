@@ -33,7 +33,8 @@
  */
 
 
-var moduleColorBackground, moduleColorForeground;
+var moduleColorBackground;
+var moduleColorForeground;
 
 var moduleAlphaBackground = 100;
 var moduleAlphaForeground = 100;
@@ -50,18 +51,17 @@ var actRandomSeed = 0;
 function setup(){
   createCanvas(600, 600);
 
-  colorMode(RGB, 255, 255, 255, 100);
+  colorMode(HSB, 360, 100, 100, 100);
 
   moduleColorBackground = color(0, 0, 0, moduleAlphaBackground);
-  moduleColorForeground = color(255, 255, 255, moduleAlphaForeground);
+  moduleColorForeground = color(0, 0, 100, moduleAlphaForeground);
 
-  backColor = color(255);
+  backColor = color(0, 0, 100);
 }
 
 function draw() {
   translate(width/tileCount/2, height/tileCount/2);
 
-  colorMode(HSB, 360, 100, 100, 100);
   background(backColor);
   smooth();
   noStroke();
@@ -103,7 +103,7 @@ function keyReleased(){
   if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
 
   if (key == '1'){
-    if (moduleColorBackground.toString() == color(0, 0, 0, moduleAlphaBackground).toString()) {
+    if (colorsEqual(moduleColorBackground, color(0, 0, 0, moduleAlphaBackground))) {
       moduleColorBackground = color(273, 73, 51, moduleAlphaBackground);
     } 
     else {
@@ -111,7 +111,7 @@ function keyReleased(){
     } 
   }
   if (key == '2'){
-    if (moduleColorForeground.toString() == color(360, 100, 100, moduleAlphaForeground).toString()) {
+    if (colorsEqual(moduleColorForeground, color(360, 100, 100, moduleAlphaForeground))) {
       moduleColorForeground = color(323, 100, 77, moduleAlphaForeground);
     } 
     else {
@@ -129,11 +129,19 @@ function keyReleased(){
       moduleAlphaForeground = 100;
     }
 
-    moduleColorBackground = color(moduleColorBackground.getHue(), moduleColorBackground.getSaturation(), moduleColorBackground.getBrightness(), moduleAlphaBackground);
-    moduleColorForeground = color(moduleColorForeground.getHue(), moduleColorForeground.getSaturation(), moduleColorForeground.getBrightness(), moduleAlphaForeground);
-
+    moduleColorBackground = color(
+      moduleColorBackground.getHue(),
+      moduleColorBackground.getSaturation(),
+      moduleColorBackground.getBrightness(),
+      moduleAlphaBackground
+    );
+    moduleColorForeground = color(
+      moduleColorForeground.getHue(),
+      moduleColorForeground.getSaturation(),
+      moduleColorForeground.getBrightness(),
+      moduleAlphaForeground
+    );
   }
-
 
   if (key == '0'){  
     moduleRadiusBackground = 20;
@@ -141,12 +149,15 @@ function keyReleased(){
     moduleAlphaBackground = 100;
     moduleAlphaForeground = 100;
     moduleColorBackground = color(0, 0, 0, moduleAlphaBackground);
-    moduleColorForeground = color(360, 100, 100, moduleAlphaForeground);
+    moduleColorForeground = color(0, 0, 100, moduleAlphaForeground);
   }
 
   if (keyCode == UP_ARROW) moduleRadiusBackground += 2;
   if (keyCode == DOWN_ARROW) moduleRadiusBackground = max(moduleRadiusBackground-2, 10);
   if (keyCode == LEFT_ARROW) moduleRadiusForeground = max(moduleRadiusForeground-2, 5);
   if (keyCode == RIGHT_ARROW) moduleRadiusForeground += 2;
+}
 
+function colorsEqual(col1, col2) {
+  return col1.toString() === col2.toString();
 }

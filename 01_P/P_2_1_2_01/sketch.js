@@ -29,19 +29,18 @@
  */
 
 
-
 var tileCount = 20;
 var actRandomSeed = 0;
-var circleColor, circleAlpha;
+var circleAlpha = 0.5;
+var circleColor
+
 
 function setup(){
   createCanvas(600, 600);
-  circleAlpha = 180;
   circleColor = color(0, 0, 0, circleAlpha);
 }
 
 function draw() {
-
   translate(width/tileCount/2, height/tileCount/2);
 
   background(255);
@@ -65,7 +64,6 @@ function draw() {
       ellipse(posX+shiftX, posY+shiftY, mouseY/15, mouseY/15);
     }
   }
-  
 }
 
 function mousePressed() {

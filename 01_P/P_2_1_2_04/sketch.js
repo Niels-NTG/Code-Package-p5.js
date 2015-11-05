@@ -39,7 +39,6 @@ function setup(){
   createCanvas(600, 600);
 }
 
-
 function draw() {
   colorMode(HSB, 360, 100, 100, 100);
   background(0, 0, 360);
@@ -73,14 +72,11 @@ function draw() {
       endShape(CLOSE);
     }
   } 
-  
 }
-
 
 function mousePressed() {
   actRandomSeed = int(random(100000));
 }
-
 
 function keyReleased(){
   if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');

@@ -27,12 +27,12 @@
  */
  
 
-
 var tileCount = 20;
 var moduleColor;
 var moduleAlpha = 180;
 var actRandomSeed = 0;
 var max_distance = 500; 
+
 
 function setup(){
   createCanvas(600, 600);
@@ -40,7 +40,6 @@ function setup(){
 }
 
 function draw() {
-
   background(255);
   smooth();
   noFill();
@@ -52,16 +51,14 @@ function draw() {
 
   for (var gridY=0; gridY<width; gridY+=25) {
     for (var gridX=0; gridX<height; gridX+=25) {
-
       var diameter = dist(mouseX, mouseY, gridX, gridY);
       diameter = diameter/max_distance * 40;
       push();
       translate(gridX, gridY, diameter*5);
-      rect(0, 0, diameter, diameter);    //// also nice: ellipse(...)
+      rect(0, 0, diameter, diameter);    // also nice: ellipse(...)
       pop(); 
     }
   }
-
 }
 
 function mousePressed() {
