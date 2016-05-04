@@ -44,8 +44,9 @@ var sketch = function( p ) {
   var clickRotationY;
 
   p.setup = function() {
-    p.createCanvas(400,400,p.WEBGL);
+    p.createCanvas(400, 400, p.WEBGL);
     p.fill(255);
+    p.strokeWeight(0.0125);
   };
 
   p.draw = function() {
@@ -53,14 +54,14 @@ var sketch = function( p ) {
 
     setView();
 
-    p.scale(1);
+    p.scale(40);
 
     // Draw Mesh
     for (var y = 0; y < yCount; y++) {
       p.beginShape(p.QUAD_STRIP);
       for (var x = 0; x <= xCount; x++) {
-        p.vertex(x,y,0);
-        p.vertex(x,y+1,0);
+        p.vertex(x, y, 0);
+        p.vertex(x, y + 1, 0);
       }
       p.endShape();
     }
