@@ -45,7 +45,7 @@ var sketch = function( p ) {
 
   p.setup = function() {
     p.createCanvas(400, 400, p.WEBGL);
-    p.fill(255);
+    p.fill(0);
     p.strokeWeight(0.0125);
   };
 
@@ -58,7 +58,7 @@ var sketch = function( p ) {
 
     // Draw Mesh
     for (var y = 0; y < yCount; y++) {
-      p.beginShape(p.QUAD_STRIP);
+      p.beginShape(p.LINES);
       for (var x = 0; x <= xCount; x++) {
         p.vertex(x, y, 0);
         p.vertex(x, y + 1, 0);
